@@ -1,0 +1,86 @@
+<h1 class="demo">Data Storage</h1>
+
+
+
+<form>
+    <table>
+        <tr>
+            <th><label class="detailslabel" for="size">Size (GB)</label></th>
+            <td><input type="text" id="size" name="size"></td>
+            <td>
+                <input type="checkbox" id="sizeCheckbox" name="sizeCheckbox">
+                <label for="sizeCheckbox" class="confident-label">Confident</label>
+            </td>
+        </tr>
+        <tr>
+            <th><label class="energylabel" for="energy">Energy (kWh/GB)</label></th>
+            <td><input type="text" id="energy" name="energy"></td>
+            <td>
+                <input type="checkbox" id="sizeCheckbox" name="sizeCheckbox">
+                <label for="sizeCheckbox" class="confident-label">Confident</label>
+            </td>
+        </tr>
+        <tr>
+            <th><label class="instanceslabel" for="instances">Instances</label></th>
+            <td><input type="text" id="instances" name="instances"></td>
+        </tr>
+    </table>
+
+    
+    <script>
+        // Add event handler for any update of the form fields
+        var formFields = document.querySelectorAll('input[type="text"]');
+        formFields.forEach(function (field) {
+            field.addEventListener('input', calculateProduct);
+        });
+
+
+        document.getElementById("size").defaultValue = "1";
+        document.getElementById("energy").defaultValue = "3";
+        document.getElementById("instances").defaultValue = "1";
+
+        function calculateProduct() {
+            var size = parseFloat(document.getElementById("size").value);
+            var energy = parseFloat(document.getElementById("energy").value);
+            var instances = parseFloat(document.getElementById("instances").value);
+
+            var productPerTransmission = size * instances * energy;
+            var productPerHour = size  * instances * energy;
+
+            result = "Energy: " + productPerTransmission.toFixed(2) + " kWh<br>";
+            // result += "Power: " + productPerHour + " kW";
+            document.getElementById("result").innerHTML = result;
+        }
+
+        calculateProduct();
+    </script>
+
+    <div class="note">
+        * 3 to 7 kWh/GB commonly assumed. <br/>
+        See <a href="https://toffeeshare.com/blog/15/How-much-energy-does-it-cost-to-store-data-online/#:~:text=It%20has%20been%20estimated%20that,mere%20gigabyte%20of%20data%20here">
+            How much energy does it cost to store data (GB)</a>
+    </div>
+
+    <div class="calculated">
+        <p id="result"></p>
+    </div>
+</form>
+
+<h2>Action Items</h2>
+
+<form>
+    <table style="border-spacing: 0 10px">
+        <tr>
+            <td style="width:2em">&nbsp;</td>
+            <td><input type="text" placeholder="New action item" style="width:95%"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="item1" name="item1" checked></td>
+            <td>Delete cache Data</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="item2" name="item2"></td>
+            <td>Reduce number of instances</td>
+        </tr>
+    </table>
+</form>

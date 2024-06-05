@@ -1,0 +1,100 @@
+<h1>Data Transmission</h1>
+
+<form>
+    <table>
+        <tr>
+            <th><label class="detailslabel" for="frequency">Frequency (messages per hour)</label></th>
+            <td><input type="text" id="frequency" name="frequency"/></td>
+            <td>
+                <input type="checkbox" id="frequencyCheckbox" name="frequencyCheckbox">
+                <label for="frequencyCheckbox" class="confident-label">Confident</label>
+            </td>
+        </tr>
+        <tr>
+            <th><label class="detailslabel" for="size">Message size (GB)</label></th>
+            <td><input type="text" id="size" name="size"></td>
+            <td>
+                <input type="checkbox" id="sizeCheckbox" name="sizeCheckbox">
+                <label for="sizeCheckbox" class="confident-label">Confident</label>
+            </td>
+        </tr>
+        <tr>
+            <th><label class="detailslabel" for="consumption">Energy intensity *</label></th>
+            <td><input type="text" id="consumption" name="consumption"></td>
+            <td><input type="checkbox" id="consumptionCheckbox" name="consumptionCheckbox">
+                <label for="consumptionCheckbox" class="confident-label">Confident</label>
+            </td>
+        </tr>
+        <tr>
+            <th><label class="instanceslabel" for="instances">Instances</label></th>
+            <td><input type="text" id="instances" name="instances"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Add event handler for any update of the form fields
+        var formFields = document.querySelectorAll('input[type="text"]');
+        formFields.forEach(function (field) {
+            field.addEventListener('input', calculateProduct);
+        });
+
+
+        document.getElementById("frequency").defaultValue = "1";
+        document.getElementById("size").defaultValue = "5000";
+        document.getElementById("consumption").defaultValue = "0.00065";
+        document.getElementById("instances").defaultValue = "1";
+
+        function calculateProduct() {
+            var frequency = parseFloat(document.getElementById("frequency").value);
+            var size = parseFloat(document.getElementById("size").value);
+            var energyIntensity = parseFloat(document.getElementById("consumption").value);
+            var instances = parseFloat(document.getElementById("instances").value);
+
+            var productPerTransmission = size * energyIntensity * instances;
+            var productPerHour = frequency * size * energyIntensity * instances;
+
+            result = "Energy: " + productPerTransmission.toFixed(2) + " kWh<br>";
+            result += "Power: " + productPerHour.toFixed(2) + " kW";
+            document.getElementById("result").innerHTML = result;
+        }
+
+        calculateProduct();
+    </script>
+
+    <div class="note">
+        * 0.0065 kWh/GB commonly assumed. <br/>
+        See <a href="https://www.devsustainability.com/p/approaches-to-calculating-network-website-energy-and-carbon">Approaches
+        to calculating network / website energy and carbon</a>
+    </div>
+
+    <div class="calculated">
+        <p id="result"></p>
+    </div>
+
+    <div class="calculated">
+        <p id="result"></p>
+    </div>
+</form>
+
+<h2>Action Items</h2>
+
+<form>
+    <table style="border-spacing: 0 10px">
+        <tr>
+            <td style="width:2em">&nbsp;</td>
+            <td><input type="text" placeholder="New action item" style="width:95%"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="item1" name="item1"></td>
+            <td>Reduce number of running devices at night</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="item2" name="item2" checked></td>
+            <td>Replace copper with fibre cable</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="item3" name="item3"></td>
+            <td>Reduce payload size in the application</td>
+        </tr>
+    </table>
+</form>
