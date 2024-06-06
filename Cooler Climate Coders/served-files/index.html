@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js "></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet">
+    <script type="module" src="https://js.arcgis.com/calcite-components/2.9.0/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/2.9.0/calcite.css"/>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="module" src="https://js.arcgis.com/calcite-components/2.9.0/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/2.9.0/calcite.css"/>
+    <title>efficiency viewer - Fotomax</title>
+</head>
+<body>
+<div hx-get="overview.html" hx-target="#content" hx-swap="innerHTML" class="logo"><p>efficiency&nbsp;viewer</p></div>
+<div class="navigation">
+    <calcite-tree>
+        <calcite-tree-item class="tree-item">
+            Fotomax&nbsp;<span class="confident"> 17</span> + <span class="uncertain">12?</span>
+            <calcite-tree slot="children">
+                <calcite-tree-item class="tree-item">
+                    Jobsystem link&nbsp;<span class="uncertain">3?</span>
+                    <calcite-tree slot="children">
+                        <calcite-tree-item hx-get="data-transmission.html" hx-target="#content" hx-swap="innerHTML"
+                                           class="tree-item">Data transmission&nbsp;<span class="uncertain">3?</span>
+                        </calcite-tree-item>
+                    </calcite-tree>
+                </calcite-tree-item>
+                <calcite-tree-item class="tree-item">
+                    Sales Unit&nbsp;<span class="confident">7</span> + <span class="uncertain">2?</span>
+                    <calcite-tree slot="children">
+                        <calcite-tree-item class="tree-item">Screen&nbsp;<span class="confident">3</span>
+                        </calcite-tree-item>
+                        <calcite-tree-item class="tree-item">Printer&nbsp;<span class="uncertain">2?</span>
+                        </calcite-tree-item>
+                        <calcite-tree-item class="tree-item">CPU &nbsp;<span class="confident">4</span>
+                        </calcite-tree-item>
+                    </calcite-tree>
+                </calcite-tree-item>
+                <calcite-tree-item class="tree-item">
+                    Development&nbsp;<span class="confident">10</span> + <span class="uncertain">7?</span>
+                    <calcite-tree slot="children">
+                        <calcite-tree-item class="tree-item">CI/CD&nbsp;<span class="confident">10</span>
+                        </calcite-tree-item>
+                        <calcite-tree-item hx-get="data-storage.html" hx-target="#content" hx-swap="innerHTML"
+                                           class="tree-item">Data Storage&nbsp;<span class="uncertain">3?</span>
+                        </calcite-tree-item>
+                        <calcite-tree-item class="tree-item">Testing&nbsp;<span class="uncertain">4?</span>
+                        </calcite-tree-item>
+                    </calcite-tree>
+                </calcite-tree-item>
+            </calcite-tree>
+        </calcite-tree-item>
+        <calcite-tree-item class="tree-item">Project Templates
+            <calcite-tree slot="children">
+                <calcite-tree-item class="tree-item">Microservices</calcite-tree-item>
+                <calcite-tree-item class="tree-item">Monolith</calcite-tree-item>
+                <calcite-tree-item class="tree-item">ETL Application</calcite-tree-item>
+            </calcite-tree>
+        </calcite-tree-item>
+    </calcite-tree>
+</div>
+<div id="content">
+    <h1>Overview</h1>
+    <h2>Overall Power Consumption</h2>
+    <p class="important">1208 Kwh/year</p>
+    <p>
+        <button>Generate Report</button>
+    </p>
+
+    <h2>Power Consumption by Component</h2>
+    <img src="treemap.png"/>
+</div>
+</body>
+</html>
